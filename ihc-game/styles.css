@@ -1,0 +1,586 @@
+* {
+  --pixel-size: 2px;
+  --grid-cell: calc(var(--pixel-size)*16);
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Source Sans Pro', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, transparent, black 50%, black);
+}
+
+.camera {
+  top: 30px;
+  width: calc(var(--pixel-size)*26);
+  height: calc(var(--pixel-size)*26);
+  overflow: hidden;
+  position: relative;
+  transform: scale(16);
+  z-index: -1;
+}
+
+.game-container {
+  position: relative;
+  width: calc(var(--grid-cell)*10);
+  height: calc(var(--grid-cell)*10);
+  background-size: 100%;
+  background: url(/images/textures/tile.png) repeat repeat;
+  image-rendering: pixelated;
+  outline: 20px solid black;
+  border-radius: 2px;
+}
+
+.game-container {
+  transition: transform 0.4s;
+}
+
+.start-background {
+  height: 100%;
+  width: 100%;
+  font-family: 'Source Sans Pro', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url(/images/background.png);
+  background-size: 100%;
+  image-rendering: pixelated;
+}
+
+.start-button {
+  height: 15px;
+  width: 41px;
+  transform: scale(10);
+  background: url(/images/settings/start.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+}
+
+.end-button {
+  height: 15px;
+  width: 41px;
+  transform: scale(10);
+  background: url(/images/settings/end.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+}
+
+.mute {
+  position: relative;
+  height: 15px;
+  width: 15px;
+  background: url(/images/settings/mute.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+}
+
+.settings {
+  position: relative;
+  height: 15px;
+  width: 15px;
+  background: url(/images/settings/settings.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+}
+
+.start {
+  right: 320px;
+  transform: scale(10);
+}
+
+.start2 {
+  left: 250px;
+  transform: scale(10);
+}
+
+.ingame {
+  transform: scale(5);
+}
+
+
+.player-moves {
+  position: absolute;
+  bottom: 50;
+  right: 50;
+  padding: 1em;
+  display: flex;
+  gap: 0.5em;
+  align-items: flex-end;
+  transform: scale(1.5);
+}
+
+.mute_button {
+  padding-left: 1px;
+}
+
+
+.top_atack {
+  bottom: 150;
+  right: 75;
+  background: url(/images/actions/fight.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+}
+
+.right_atack {
+  bottom: 75;
+  background: url(/images/actions/share.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+}
+
+.left_atack {
+  bottom: 75;
+  right: 150;
+  background: url(/images/actions/steal.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+}
+
+.down_atack {
+  right: 75;
+  background: url(/images/actions/flee.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+}
+
+.right_skill {
+  background: url(/images/actions/sow.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+  bottom: 75;
+}
+
+.left_skill {
+  background: url(/images/actions/harvest.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+  bottom: 75;
+  right: 150;
+}
+
+.down_skill {
+  background: url(/images/actions/save.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+  right: 75;
+}
+
+.player-movement {
+  position: absolute;
+  bottom: 50;
+  left: 50;
+  padding: 1em;
+  display: flex;
+  gap: 0.5em;
+  align-items: flex-end;
+  transform: scale(1.5);
+}
+
+.arr {
+  position: relative;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+  transform: scale(5);
+}
+
+.top {
+  bottom: 150;
+  left: 75;
+  background: url(/images/settings/up.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+}
+
+.right {
+  bottom: 75;
+  left: 150;
+  background: url(/images/settings/right.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+}
+
+.left {
+  bottom: 75;
+  background: url(/images/settings/leftl.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+}
+
+.down {
+  left: 75;
+  background: url(/images/settings/down.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+}
+
+.player-info {
+  position: absolute;
+  top: 0;
+  left: 50;
+  padding: 1em;
+  display: flex;
+  gap: 0.5em;
+  align-items: flex-end;
+  transform: scale(1.3);
+}
+
+.player-settings {
+  position: absolute;
+  top: 50;
+  right: 50;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+button {
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 18px;
+  height: 44px;
+  border-radius: 4px;
+  outline: 0;
+}
+
+input[type="text"] {
+  outline: 0;
+  padding-left: 0.5em;
+  border: 3px solid grey;
+  width: 150px;
+  text-transform: uppercase;
+}
+
+input[type="text"]:focus {
+  border-color: #f000ff;
+}
+
+button {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  background: #59ff5a;
+  border: 0;
+  border-bottom: 2px solid #1e830b;
+  cursor: pointer;
+}
+
+button:active {
+  position: relative;
+  top: 1px;
+}
+
+.Character_life_bar {
+  font-family: inherit;
+  font-weight: bold;
+  height: 30px;
+  width: 260px;
+  border: 3px solid red;
+  position: absolute;
+  top: 100%;
+  left: 35;
+}
+
+.Character_heart {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: -40%;
+  left: -25;
+  transform: scale(1.3);
+  background: url(/images/info/heart.png) no-repeat no-repeat;
+  image-rendering: pixelated;
+}
+
+.Character_life_bar_fill {
+  position: absolute;
+  height: 100%;
+  background: red;
+  transition: width 0.5s;
+}
+
+.Character_life_bar_value {
+  color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Character_xp {
+  font-family: inherit;
+  font-weight: bold;
+  height: 30px;
+  width: 257px;
+  border: 3px solid green;
+  position: absolute;
+  top: 200%;
+}
+
+.Character_xp_icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: -25%;
+  left: -23;
+  transform: scale(1.2);
+  background: url(/images/info/xp.png) no-repeat no-repeat;
+  background-size: 80%;
+  image-rendering: pixelated;
+}
+
+.Character_xp_bar_fill {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgb(35, 168, 35);
+  transition: width 0.5s;
+}
+
+.Character_xp_bar_value {
+  color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Character_dead_xp {
+  color: black;
+  position: relative;
+  top: 40px;
+  right: 50px;
+  font-weight: bold;
+}
+
+/* Characters */
+.grid-cell {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+}
+
+.Character {
+  transition: transform 0.4s;
+}
+
+.Character.you {
+  z-index: 1;
+}
+
+.Character.you .Character_you-arrow {
+  display: block;
+}
+
+.Character_you-arrow {
+  display: none;
+  position: absolute;
+  top: -18px;
+  left: 5px;
+  width: 7px;
+  height: 5px;
+  background: url(/images/textures/arrow.png) no-repeat no-repeat;
+}
+
+.Character_sprite {
+  overflow: hidden;
+  top: 0px;
+  background-position-x: 1px;
+  background: url(/images/textures/boneco.png);
+}
+
+.Character[data-direction="right"] .Character_sprite {
+  background-position-x: -16px;
+}
+
+.Character[data-color="red"] .Character_sprite {
+  background-position-y: -17px;
+}
+
+.Character[data-color="orange"] .Character_sprite {
+  background-position-y: -34px;
+}
+
+.Character[data-color="yellow"] .Character_sprite {
+  background-position-y: -51px;
+}
+
+.Character[data-color="skeleton"] .Character_sprite {
+  background-position-y: -68px;
+}
+
+.Character_shadow {
+  background: url(/images/textures/shadow.png) no-repeat no-repeat;
+}
+
+.Character_name-container {
+  width: 0px;
+  height: 5px;
+  position: absolute;
+  top: -5px;
+  font-size: 3px;
+  color: black;
+  font-weight: bold;
+  text-shadow: 0.1px 0 0 #fff;
+  text-align: center;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.cell {
+  transition: transform 0.4s;
+}
+
+.seeds_sprite {
+  overflow: hidden;
+  top: 3px;
+  background-position-x: 0px;
+  background: url(/images/textures/seeds.png);
+}
+
+.cell[state="1"] .seeds_sprite {
+  background-position-x: -16px;
+}
+
+.cell[state="2"] .seeds_sprite {
+  background-position-x: -32px;
+}
+
+.cell[state="3"] .seeds_sprite {
+  background-position-x: -48px;
+}
+
+.cell[state="4"] .seeds_sprite {
+  background-position-x: -64px;
+}
+
+.cell[state="5"] .seeds_sprite {
+  background-position-x: -80px;
+}
+
+
+@media only screen and (min-width:700px) and (max-width: 900px) and (min-height:430px) {
+  body {
+    background: radial-gradient(circle at center, transparent, black 40%, black);
+  }
+
+  .player-moves {
+    transform: scale(1);
+  }
+
+  .player-movement {
+    transform: scale(1);
+  }
+
+  .player-info {
+    padding: 0em;
+    left: 0;
+    display: flex;
+    transform: scale(0.7);
+  }
+
+  .camera {
+    top: 0px;
+    overflow: hidden;
+    position: relative;
+    z-index: -1;
+    transform: scale(6);
+  }
+
+  .Character_life_bar {
+    top: 90px;
+    left: 15px;
+  }
+
+  .Character_xp {
+    top: 50px;
+  }
+
+  .start-button {
+    transform: scale(8);
+  }
+
+  .end-button {
+    transform: scale(8);
+  }
+
+
+  .start {
+    right: 255px;
+    transform: scale(8);
+  }
+
+  .start2 {
+    left: 180px;
+    transform: scale(8);
+  }
+
+}
+
+@media only screen and (((min-width:500px) and (max-width: 700px)) or (max-height:430px)) {
+  body {
+    background: radial-gradient(circle at center, transparent, black 40%, black);
+  }
+
+  .player-moves {
+    transform: scale(0.8);
+  }
+
+  .player-movement {
+    transform: scale(0.8);
+  }
+
+  .player-info {
+    padding: 0em;
+    left: 0;
+    transform: scale(0.6);
+  }
+
+  .camera {
+    top: 0px;
+    overflow: hidden;
+    position: relative;
+    z-index: -1;
+    transform: scale(6);
+  }
+
+  .Character_life_bar {
+    top: 90px;
+    left: 15px;
+  }
+
+  .Character_xp {
+    top: 50px;
+  }
+
+  .start-button {
+    transform: scale(6);
+  }
+
+  .end-button {
+    transform: scale(6);
+  }
+
+  .Character_dead_xp {
+    color: black;
+    position: relative;
+    top: 25px;
+    right: 50px;
+    font-weight: 600;
+    transform: scale(0.8);
+  }
+
+  .start {
+    right: 195px;
+    transform: scale(6);
+  }
+
+  .start2 {
+    left: 125px;
+    transform: scale(6);
+  }
+
+  .ingame {
+    transform: scale(4);
+  }
+
+}

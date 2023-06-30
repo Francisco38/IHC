@@ -1,0 +1,154 @@
+<html>
+
+<head>
+  <title>Multiplayer Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" type="text/css">
+</head>
+
+<body>
+  <div class="start-background" id="startScreen">
+    <div class="start-button" onclick="startGame()">
+    </div>
+    <div class="mute start" onclick=" mute()"></div>
+    <div class="settings start2"></div>
+    <audio controls autoplay loop style="display:none;" id="music">
+      <source src="/sounds/engagex_start.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div class="start-background" id="deathScreen" style="display:none;">
+    <div class="end-button" onclick="homeScreen()">
+    </div>
+    <div class="Character_dead_xp" id="endExp"></div>
+  </div>
+  <div id="gameScreen" style="display:none;">
+    <div class="frame">
+      <div class="camera">
+        <div class="game-container">
+        </div>
+      </div>
+    </div>
+
+    <div class="player-info">
+      <div>
+        <label for="player-name">Your Name</label>
+        <input id="player-name" maxlength="10" type="text" />
+      </div>
+      <div>
+        <button id="player-color">Change Skin</button>
+      </div>
+
+      <div class="character_life_bar">
+        <div class="character_life_bar_fill"></div>
+        <div class="character_life_bar_value">
+          100%
+        </div>
+        <div class="Character_heart"></div>
+        <div class="Character_xp">
+          <div class="Character_xp_bar_fill"></div>
+          <div class="Character_xp_bar_value" id="exp"></div>
+          <div class="Character_xp_icon"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-settings">
+      <div id="mute_button" class="mute ingame" onclick=" mute()"></div>
+    </div>
+
+    <div class="player-movement">
+      <div class="arr top" id="top">
+        <div></div>
+      </div>
+    </div>
+
+    <div class="player-movement">
+      <div class="arr left" id="left">
+        <div></div>
+      </div>
+    </div>
+
+    <div class="player-movement">
+      <div class="arr right" id="right">
+        <div></div>
+      </div>
+    </div>
+
+    <div class="player-movement">
+      <div class="arr down" id="down">
+        <div></div>
+      </div>
+    </div>
+
+
+    <div class="player-moves">
+      <div class="arr down_skill" id="downSkill">
+        <div></div>
+      </div>
+    </div>
+
+    <div class="player-moves">
+      <div class="arr right_skill" id="rightSkill">
+        <div></div>
+      </div>
+    </div>
+
+    <div class="player-moves">
+      <div class="arr left_skill" id="leftSkill">
+        <div></div>
+      </div>
+    </div>
+
+    <div class="player-moves">
+      <div class="arr top_atack" id="fightSkill" style="display: none;">
+        <div></div>
+      </div>
+    </div>
+
+    <div class="player-moves">
+      <div class="arr left_atack" id="stealSkill" style="display: none;">
+        <div></div>
+      </div>
+    </div>
+
+    <div class="player-moves">
+      <div class="arr right_atack" id="shareSkill" style="display: none;">
+        <div></div>
+      </div>
+    </div>
+
+    <div class="player-moves">
+      <div class="arr down_atack" id="fleeSkill" style="display: none;">
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script>
+    // NOTE - INCLUDE YOUR FIREBASE CONFIG HERE FOR ANYTHING TO WORK:
+    const firebaseConfig = {
+      apiKey: "AIzaSyD_yRCxw6zmFy_eZRD0cmjheXQzK9XPBPM",
+      authDomain: "engagex-ea8e3.firebaseapp.com  ",
+      databaseURL: "https://engagex-ea8e3-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "engagex-ea8e3",
+      storageBucket: "engagex-ea8e3.appspot.com",
+      messagingSenderId: "492736853859",
+      appId: "1:492736853859:web:ef574d841eb02c64c94556",
+      measurementId: "G-XR1ZT0S9X0"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+
+  <script src="/KeyPressListener.js"></script>
+  <script src="/app.js"></script>
+</body>
+
+</html>
